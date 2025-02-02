@@ -1,5 +1,4 @@
-It's Friday, January 31, 2025, and Heather can now access
-this repository!
+This is the group project for CAS502, which includes Janae Thomson and Heather Tottingham. 
 
 # Greenspace accessibility & health
 ## Project Overview
@@ -11,9 +10,15 @@ Utilizing open-source data sets, we aim to analyze what “access” to greenspa
 ## Data Sources
 OpenStreetMap
 CDC PLACES
+NHIS
 
 ## Project Plan
 ### Challenges
-
+-Data from NHIS is not currently easily accessible. We might need to find a different data source for mental health data.
+-Heather is new to GitHub, version control systems, and writing code in collaboration with others.
 
 ### Collaboration: 
+-Direct messages via Slack 
+-GitHub pull requests
+  +familiarize with workflow
+  +review each other's code to better collaborate and create a cohesive product
