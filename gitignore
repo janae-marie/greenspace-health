@@ -1,1 +1,2 @@
-#Adding a gitignore file
+#Ignore virtual environments
+venv/
