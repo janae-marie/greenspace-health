@@ -7,9 +7,14 @@ Does greenspace access correlate with reported mental health statistics across d
 
 Utilizing open-source data sets, we aim to analyze what “access” to greenspace might mean for city residents, including distance, greenspace type, and public access designations. Then, we will utilize mental health statistics to see if and how these correlate to access types. We hope to visualize these correlations.
 
-## Data Sources
-- OpenStreetMap
-- CDC PLACES
+## Data Sources and Definitions
+### OpenStreetMap
+- Utilizing osmnx package to load greenspace, defaulted to "park" and "nature reserve" designations
+#### Citation
+Boeing, G. (2024). Modeling and Analyzing Urban Networks and Amenities with OSMnx. Working paper. https://geoffboeing.com/publications/osmnx-paper/
+#### License
+OSMnx is open source and licensed under the MIT license. OpenStreetMap’s open data license: https://www.openstreetmap.org/copyright 
+### CDC PLACES
 
 ## Project Plan
 ### Challenges
