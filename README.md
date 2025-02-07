@@ -22,3 +22,11 @@ Utilizing open-source data sets, we aim to analyze what “access” to greenspa
   + Utilize feature branching where each person will work on certain functionality within a branch. We may collaborate on the same branch for the same functionality (i.e. an issue at a time).
   + familiarize with workflow
   + review each other's code via pull requests to better collaborate and create a cohesive product
+
+  # Environment set-up
+  To recreate the environment, ensure Conda is installed on your computer, and run
+  - conda env create -f environment.yml
+  - conda activate greenspace_env
+
+  ## Dependencies
+  - osmnx--2.0.1 Note that osmnx, geopandas, and matplotlib do not have versions specified. 
