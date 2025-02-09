@@ -6,3 +6,4 @@ dependencies:
     - osmnx #osm data module
     - geopandas #osmnx support
     - matplotlib  #For visualization
+    - requests #to pull from webpages
