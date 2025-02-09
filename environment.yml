@@ -7,3 +7,4 @@ dependencies:
     - geopandas #osmnx support
     - matplotlib  #For visualization
     - requests #to pull from webpages
+    - scipy.stats #potentially need this for additional correlation calculations
