@@ -3,9 +3,9 @@ This is the group project for CAS502, which includes Janae Thomson and Heather T
 # Greenspace accessibility & health
 ## Project Overview
 
-Does greenspace access correlate with reported mental health statistics across different neighborhoods or areas of a city?
+Does greenspace access correlate with reported depression statistics across different neighborhoods or areas of a city?
 
-Utilizing open-source data sets, we aim to analyze what “access” to greenspace might mean for city residents, including distance, greenspace type, and public access designations. Then, we will utilize mental health statistics to see if and how these correlate to access types. We hope to visualize these correlations.
+Utilizing open-source data sets, we aim to analyze what “access” to greenspace might mean for city residents, including distance, greenspace type, and public access designations. Then, we will utilize depression statistics to see if and how these correlate to access types. We hope to visualize these correlations.
 
 ## Data Sources and Definitions
 ### OpenStreetMap
