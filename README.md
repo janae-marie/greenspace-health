@@ -15,6 +15,7 @@ Boeing, G. (2024). Modeling and Analyzing Urban Networks and Amenities with OSMn
 #### License
 OSMnx is open source and licensed under the MIT license. OpenStreetMap’s open data license: https://www.openstreetmap.org/copyright 
 ### CDC PLACES
+- Extract the following from the CDC PLACES dataset: YEAR, StateId, CountyName, Data_Value, Low_Confidence_Limit, High_Confidence_Limit, TotalPop18plus, and MeasureId = DEPRESSION. This will give us a subset of the data with the prevalence value of depression among adults by year, state, and county, with the lower and upper confidence interval values. 
 
 ## Project Plan
 ### Challenges
