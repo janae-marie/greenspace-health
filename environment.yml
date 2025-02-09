@@ -1,0 +1,8 @@
+name: greenspace_env
+channels:
+    - conda-forge #Ensures all packages come from conda-forge. Needed for osmnx
+dependencies:
+    - python=3.10
+    - osmnx #osm data module
+    - geopandas #osmnx support
+    - matplotlib  #For visualization

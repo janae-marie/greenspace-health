@@ -1,1 +1,7 @@
-#Adding a gitignore file
+#Ignore conda environment folders
+/greenspace_env
+/env
+/.env
+
+#Ignore macOS hidden files
+.DS_Store
