@@ -5,3 +5,7 @@
 
 #Ignore macOS hidden files
 .DS_Store
+
+#Cache
+/cache
+/__pycache__

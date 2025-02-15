@@ -126,13 +126,13 @@ def main_load_greenspace(place_name, tags):
 
     # Step 2: Load data
     print(f"\nStep 2: Loading greenspace data...")
-    greenspace = load_greenspace_data(place_name, tags)
-    if greenspace is None:
+    unprocessed_greenspace = load_greenspace_data(place_name, tags)
+    if unprocessed_greenspace is None:
         return None
 
     # Step 3: Process data
     print("\nStep 3: Processing data...")
-    greenspace_data = process_greenspace_data(greenspace)
+    greenspace_data = process_greenspace_data(unprocessed_greenspace)
     
     # Step 4: If we have data, show additional info
     if greenspace_data is not None:
