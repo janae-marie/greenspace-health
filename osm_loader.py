@@ -1,35 +1,152 @@
-#Import needed modules
 import osmnx
 import geopandas
 import pandas
 
-#Load OSM data using place definition and greenspace definition
-def load_osm_greenspace(place_name, tags):
+# Define variables
+place_name = 'St. Louis, Missouri'
+
+greenspace_tags = {
+    'leisure': ['park', 'nature_reserve']
+}
+
+def check_boundary(place_name):
+    """
+    Check if a place has a valid boundary in OpenStreetMap.
+
+    Args:
+        place_name (str): Name of place being checked
+
+    Returns: 
+        None: This is a validation function
+
+    Raises: 
+        Boundary error: if osmnx does not recoginize place as having a valid boundary via geocoder
+    
+    """
     try:
-        greenspace = osmnx.features.features_from_place(place_name, tags, which_result=None)
+        # Attepmt finding geocode for the requested place
+        area = osmnx.geocoder.geocode_to_gdf(place_name)
+        print(f"Found boundary of type: {type(area.geometry.iloc[0])}")
+        return True
+    except Exception as boundary_error:
+        # If error, suggest a known place with valid boundary
+        print(f"Boundary error: {str(boundary_error)}")
+        print("Suggestion: Try a different place name like: 'St. Louis County, Missouri'")
+        return False
 
-        # List of columns we want to keep
+def load_greenspace_data(place_name, tags):
+    """
+    Load greenspace features for a given place.
+    
+    Args:
+        place_name (str): Name of place being retrieved from osmnx
+        tags (list): List of tags to filter query
+
+    Returns:
+        gpd.GeoDataFrame: Geometry (required for all GeoDataFrames)
+            Tagged columns dependent on `tags`
+        None: If no features were found or if error occurs
+
+    Raises:
+        No exceptions are raised, errors will return `None`
+    """
+    try:
+        # which_result stops osmnx from searching all possible places and returns only first result.
+        # Needed for loading well.
+        greenspace = osmnx.features.features_from_place(place_name, tags, which_result=1)
+        print("Successfully retrieved features")
+        return greenspace
+    except osmnx._errors.InsufficientResponseError:
+        print("No greenspace features found in this area")
+        return None
+    except Exception as feature_error:
+        print(f"Error getting features: {str(feature_error)}")
+        return None
+  
+def process_greenspace_data(greenspace):
+    """
+    Process the greenspace data.
+    
+    Args:
+        greenspace (gpd.GeoDataFrame): Response from osmnx
+    
+    Returns:
+        pandas.DataFrame : Cleaned DataFrame with desired columns of 
+            'leisure', 'name', 'addr:city', 'addr:county', 'addr:state', 'type'
+            All columns will exist with pandas.NA for missing values
+        None if input is empty or if error occurs during processing
+
+    Raises:
+        No exceptions are raised, errors will return `None`
+    """
+    if greenspace is None:
+        return None
+        
+    try:
         desired_columns = ['leisure', 'name', 'addr:city', 'addr:county', 'addr:state', 'type']
-
-        # Add missing columns with NaN values
+        
+        # Ensure data is always uniform by adding NA if no data is returned for a column. 
+        # This is common for places with little data.
         for col in desired_columns:
             if col not in greenspace.columns:
-                greenspace[col] = pandas.NA  # Assign missing columns with NaN values
+                greenspace[col] = pandas.NA
                 
-        # Keep only the columns that exist
         greenspace = greenspace[desired_columns]
         
-        #Display greenspace_data basic information
-        #greenspace_data is a GeoDataFrame
-        print(greenspace.head())
-        print(f"Total greenspaces: {len(greenspace)}")
-        print(f"The greenspace data in {place_name} has {len(greenspace.columns)} columns, or attributes, per park")
-
+        print("\nResults:")
+        print(f"Found {len(greenspace)} greenspaces")
+        print(f"Columns: {', '.join(greenspace.columns)}")
+        
         return greenspace
-    except:
-        print(f"No greenspaces found for {place_name}")
-        greenspace = None
+        
+    except Exception as e:
+        print(f"Error processing data: {str(e)}")
+        return None
+        
 
-place_name = 'Phoenix, Arizona'
-greenspace_tags = {'leisure': ['park', 'nature_reserve']}
-greenspace_data = load_osm_greenspace(place_name, greenspace_tags)
+def main_load_greenspace(place_name, tags):
+    """
+    Main function to load, process, and analyze greenspace data.
+    
+    Args:
+        place_name (str): Name of place being retrieved from osmnx
+        tags (list): List of tags to filter query
+
+    Returns:
+        pandas.DataFrame : Cleaned greenpace data. See `process_greenspace_data` function.
+
+    Raises:
+        No exception raised
+    
+    """
+    # Step 1: Check boundary
+    print(f"Step 1: Checking boundary for {place_name}...")
+    if not check_boundary(place_name):
+        return None
+
+    # Step 2: Load data
+    print(f"\nStep 2: Loading greenspace data...")
+    greenspace = load_greenspace_data(place_name, tags)
+    if greenspace is None:
+        return None
+
+    # Step 3: Process data
+    print("\nStep 3: Processing data...")
+    greenspace_data = process_greenspace_data(greenspace)
+    
+    # Step 4: If we have data, show additional info
+    if greenspace_data is not None:
+        # Display unique values in 'leisure' column
+        print("\nUnique values in leisure column:")
+        print(greenspace_data['leisure'].unique()) 
+        
+        # Show the count for each unique value
+        leisure_counts = greenspace_data['leisure'].value_counts()
+        print("\nCounts by type:")
+        print(leisure_counts)
+
+    return greenspace_data
+
+# Runs only when executed directly, not when referenced in other scripts
+if __name__ == "__main__":
+    main_load_greenspace(place_name, greenspace_tags)
