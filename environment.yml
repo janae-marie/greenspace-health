@@ -8,3 +8,4 @@ dependencies:
     - matplotlib  #For visualization
     - requests #to pull from webpages
     - scipy.stats #potentially need this for additional correlation calculations
+    - mock # To support unit tests using mock object library. 
