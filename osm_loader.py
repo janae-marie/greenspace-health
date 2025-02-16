@@ -6,7 +6,7 @@ import pandas
 place_name = 'St. Louis, Missouri'
 
 greenspace_tags = {
-    'leisure': ['park', 'nature_reserve']
+    'leisure': ['park', 'nature_reserve', 'garden']
 }
 
 def check_boundary(place_name):
