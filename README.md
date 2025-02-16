@@ -9,7 +9,7 @@ Utilizing open-source data sets, we aim to analyze what “access” to greenspa
 
 ## Data Sources and Definitions
 ### OpenStreetMap
-- Utilizing osmnx package to load greenspace, defaulted to "park" and "nature reserve" designations
+- Utilizing osmnx package to load greenspace, defaulted to "park", "nature reserve", and "garden" designations
 #### Citation
 Boeing, G. (2024). Modeling and Analyzing Urban Networks and Amenities with OSMnx. Working paper. https://geoffboeing.com/publications/osmnx-paper/
 #### License
