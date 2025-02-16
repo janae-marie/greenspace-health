@@ -3,6 +3,13 @@ import csv
 from cdc_loader import load_cdc_places
 from osm_loader import load_osm_greenspace
 
+# Call R from Python (using rpy2):
+import rpy2.robjects
+import rpy2.robjects as robjects
+robjects.r("print('Hello from R!')")
+r_vector = robjects.StrVector(["a", "b", "c"])
+print(r_vector)
+
 # Open the file in write mode
 with open(csv_file_path, mode='w', newline='') as file:
     # Create a csv.writer object
