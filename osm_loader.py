@@ -43,7 +43,7 @@ def load_greenspace_data(place_name, tags):
         tags (list): List of tags to filter query
 
     Returns:
-        gpd.GeoDataFrame: Geometry (required for all GeoDataFrames)
+        geopandas.GeoDataFrame: Geometry (required for all GeoDataFrames)
             Tagged columns dependent on `tags`
         None: If no features were found or if error occurs
 
@@ -68,7 +68,7 @@ def process_greenspace_data(greenspace):
     Process the greenspace data.
     
     Args:
-        greenspace (gpd.GeoDataFrame): Response from osmnx
+        greenspace (geopandas.GeoDataFrame): Response from osmnx
     
     Returns:
         pandas.DataFrame : Cleaned DataFrame with desired columns of 
