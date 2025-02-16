@@ -16,10 +16,8 @@ from osm_loader import process_greenspace_data
 from osm_loader import main_load_greenspace
 
 class TestLoadOsmGreenspace(unittest.TestCase):
-
-     def test_load_greenspace_successful(self):
+    def test_load_greenspace_successful(self):
         """Test successful greenspace data loading"""
-        
         with patch('osmnx.features.features_from_place') as mock_features:
             mock_data = geopandas.GeoDataFrame({
                 'geometry': [Point(0, 0)],
@@ -31,16 +29,37 @@ class TestLoadOsmGreenspace(unittest.TestCase):
             mock_features.return_value = mock_data
 
             # Run function
-            result = load_greenspace_data('Valid City', {'leisure': ['park']})
+            result = load_greenspace_data('Valid Place', {'leisure': ['park']})
             
             # Ensure return is a GeoDataFrame
             self.assertIsInstance(result, geopandas.GeoDataFrame)
 
             # Ensure necesary parameters were used, specifically which_result
-            mock_features.assert_called_once_with('Valid City', {'leisure': ['park']}, which_result=1)
+            mock_features.assert_called_once_with('Valid Place', {'leisure': ['park']}, which_result=1)
 
             # Ensure return is expected length
             self.assertEqual(len(result), 1)
+
+    def test_load_greenspace_no_results(self):
+        """ Test response if there is no data found """
+        with patch('osmnx.features.features_from_place') as mock_features:
+            mock_features.side_effect = osmnx._errors.InsufficientResponseError
+
+            result = load_greenspace_data('No Greenspace Place', {'leisure': ['park']})
+
+            # Ensure return is None if error is InsufficientResponseError
+            self.assertIsNone(result)
+
+    def test_load_greenspace_general_error(self):
+        """ Test response with general error """
+        with patch('osmnx.features.features_from_place') as mock_features:
+            # Set the side_effect to raise an exception
+            mock_features.side_effect = Exception("Any error response")
+
+            result = load_greenspace_data('No Greenspace Place', {'leisure': ['park']})
+
+            # Ensure return is None if any other error happens
+            self.assertIsNone(result)
 
 # Run the unittests when this file is run directly
 if __name__ == '__main__':

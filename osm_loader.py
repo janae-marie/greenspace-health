@@ -31,7 +31,7 @@ def check_boundary(place_name):
     except Exception as boundary_error:
         # If error, suggest a known place with valid boundary
         print(f"Boundary error: {str(boundary_error)}")
-        print("Suggestion: Try a different place name like: 'St. Louis County, Missouri'")
+        print("Suggestion: Try a different place name like: 'St. Louis, Missouri'")
         return False
 
 def load_greenspace_data(place_name, tags):
@@ -90,12 +90,15 @@ def process_greenspace_data(greenspace):
         for col in desired_columns:
             if col not in greenspace.columns:
                 greenspace[col] = pandas.NA
-                
+
+        # Only selects the desired_columns, in that order.
+        # Because there is no "geometry" in the columns, the data frame is now pandas.DataFrame       
         greenspace = greenspace[desired_columns]
         
         print("\nResults:")
         print(f"Found {len(greenspace)} greenspaces")
         print(f"Columns: {', '.join(greenspace.columns)}")
+        print(f"Data type: {type(greenspace)}")
         
         return greenspace
         
@@ -121,6 +124,8 @@ def main_load_greenspace(place_name, tags):
     """
     # Step 1: Check boundary
     print(f"Step 1: Checking boundary for {place_name}...")
+
+    # To Do: break this down a bit more
     if not check_boundary(place_name):
         return None
 
