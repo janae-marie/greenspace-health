@@ -1,3 +1,5 @@
+conda init bash
+conda activate greenspace_env
 import unittest
 from unittest.mock import patch
 import osmnx
@@ -8,7 +10,10 @@ import sys
 import os
 
 # Add parent directory to Python path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+#sys.path.append(os.path.abspath(os.path.join(os.path.dirname('C:\Users\hatot\OneDrive\Desktop\502-Project' , '..'))))
+current_dir = os.path.dirname(os.path.abspath(r"C:\Users\hatot\OneDrive\Desktop\502-Project"))
+parent_dir = os.path.dirname(current_dir)
+sys.path.insert(0, parent_dir)
 
 from osm_loader import check_boundary
 from osm_loader import load_greenspace_data
