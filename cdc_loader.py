@@ -2,13 +2,6 @@
 import requests
 import pandas
 import geopandas
-#Call R from Python
-import rpy2.robjects as robjects
-#Test that R has been imported
-robjects.f("print('Hello from R!')")
-#Create an R object
-r_vector = robjects.StrVector(["a" ,"b", "c"])
-print(r_vector)
 
 #Load PLACES data using county/state definition & Measure ID (default: depression)
 def load_cdc_places(county_name, state_abbr, measure_id='DEPRESSION', limit=5000):
