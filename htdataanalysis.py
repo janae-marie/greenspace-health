@@ -1,25 +1,76 @@
 # Import required modules
 import csv
 from cdc_loader import load_cdc_places
-from osm_loader import load_osm_greenspace
-
-# Call R from Python (using rpy2):
-import rpy2.robjects
-import rpy2.robjects as robjects
-robjects.r("print('Hello from R!')")
-r_vector = robjects.StrVector(["a", "b", "c"])
-print(r_vector)
-
-# Open the file in write mode
-with open(csv_file_path, mode='w', newline='') as file:
-    # Create a csv.writer object
-    writer = csv.writer(file)
-    # Write data to the CSV file
-    writer.writerows(data)
+from osm_loader import load_greenspace_data
+import json
+import geonamescache
 
 # Write a loop to go through each unique county/state listing, use that as place_name
 # for(county in cdc_data)
 # problem with above: there is a Park County in both WY & MT, etc. Need to iterate through both county and state simultaneously
+states = {
+        'AK': 'Alaska',
+        'AL': 'Alabama',
+        'AR': 'Arkansas',
+        'AS': 'American Samoa',
+        'AZ': 'Arizona',
+        'CA': 'California',
+        'CO': 'Colorado',
+        'CT': 'Connecticut',
+        'DC': 'District of Columbia',
+        'DE': 'Delaware',
+        'FL': 'Florida',
+        'GA': 'Georgia',
+        'GU': 'Guam',
+        'HI': 'Hawaii',
+        'IA': 'Iowa',
+        'ID': 'Idaho',
+        'IL': 'Illinois',
+        'IN': 'Indiana',
+        'KS': 'Kansas',
+        'KY': 'Kentucky',
+        'LA': 'Louisiana',
+        'MA': 'Massachusetts',
+        'MD': 'Maryland',
+        'ME': 'Maine',
+        'MI': 'Michigan',
+        'MN': 'Minnesota',
+        'MO': 'Missouri',
+        'MP': 'Northern Mariana Islands',
+        'MS': 'Mississippi',
+        'MT': 'Montana',
+        'NA': 'National',
+        'NC': 'North Carolina',
+        'ND': 'North Dakota',
+        'NE': 'Nebraska',
+        'NH': 'New Hampshire',
+        'NJ': 'New Jersey',
+        'NM': 'New Mexico',
+        'NV': 'Nevada',
+        'NY': 'New York',
+        'OH': 'Ohio',
+        'OK': 'Oklahoma',
+        'OR': 'Oregon',
+        'PA': 'Pennsylvania',
+        'PR': 'Puerto Rico',
+        'RI': 'Rhode Island',
+        'SC': 'South Carolina',
+        'SD': 'South Dakota',
+        'TN': 'Tennessee',
+        'TX': 'Texas',
+        'UT': 'Utah',
+        'VA': 'Virginia',
+        'VI': 'Virgin Islands',
+        'VT': 'Vermont',
+        'WA': 'Washington',
+        'WI': 'Wisconsin',
+        'WV': 'West Virginia',
+        'WY': 'Wyoming'
+}
+
+# Return a geonamescache dictionary with the requested data:
+# counties = get_us_counties() 
+
 place_name = 'Maricopa County, Arizona'
 greenspace_tags = {'leisure': ['park', 'nature_reserve']}
 greenspace_data = load_osm_greenspace(place_name, greenspace_tags)
