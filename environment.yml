@@ -9,4 +9,4 @@ dependencies:
     - requests #to pull from webpages
     - scipy.stats #potentially need this for additional correlation calculations
     - mock # To support unit tests using mock object library. 
-    - rpy2 # To use R in Python (plan - data visualizations)
+    - geonamescache=2.2.0 #Geonames data for continents, cities and US states
