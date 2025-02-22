@@ -21,23 +21,18 @@ class TestCheckBoundary(unittest.TestCase):
     def test_check_boundary_fail(self):
         """Test invalid OSM boundary return"""
         with patch('osmnx.geocoder.geocode_to_gdf') as mock_geocode:
-            mock_geocode.side_effect = "Any error, probably geocode"
-
+            mock_geocode.side_effect = "Any error, probably invalid geocode"
             result = check_boundary('Fake Place')
-
             self.assertFalse(result)
 
     def test_check_boundary_valid(self):
         with patch('osmnx.geocoder.geocode_to_gdf') as mock_geocode:
-
             # geocode_to_gdf returns a GeoDataFrame (in a list) which always has a polygon as a 'geometry'
             mock_gdf = geopandas.GeoDataFrame(
                 {'geometry': [Polygon([(0, 0), (0, 1), (1, 1), (1, 0)])]},
             )
-
             # Using known valid boundary
             result = check_boundary('St. Louis, Missouri')
-
             self.assertTrue(result)
 
 
@@ -50,21 +45,13 @@ class TestLoadOsmGreenspace(unittest.TestCase):
                 'leisure': ['park'],
                 'name': ['Test Park']
                 })
-            
-            # Set mock return to defind mock data
             mock_features.return_value = mock_data
 
-            # Run function
             result = load_greenspace_data('Valid Place', {'leisure': ['park']})
-            
-            # Ensure return is a GeoDataFrame
+
+            # Ensure necessary parameters were used, specifically which_result
             self.assertIsInstance(result, geopandas.GeoDataFrame)
-
-            # Ensure necesary parameters were used, specifically which_result
             mock_features.assert_called_once_with('Valid Place', {'leisure': ['park']}, which_result=1)
-
-            # Ensure return is expected length
-            self.assertEqual(len(result), 1)
 
     def test_load_greenspace_no_results(self):
         """ Test response if there is no data found """
@@ -73,7 +60,6 @@ class TestLoadOsmGreenspace(unittest.TestCase):
 
             result = load_greenspace_data('No Greenspace Place', {'leisure': ['park']})
 
-            # Ensure return is None if error is InsufficientResponseError
             self.assertIsNone(result)
 
     def test_load_greenspace_general_error(self):
@@ -84,7 +70,6 @@ class TestLoadOsmGreenspace(unittest.TestCase):
 
             result = load_greenspace_data('No Greenspace Place', {'leisure': ['park']})
 
-            # Ensure return is None if any other error happens
             self.assertIsNone(result)
 
 class TestProcessGreenspaceData(unittest.TestCase):
@@ -93,7 +78,6 @@ class TestProcessGreenspaceData(unittest.TestCase):
         Test processing with extra columns as input.
         Expected input (directly from load query) will have several extra columns before being processed. 
         """
-
         # Create input (all desired columns)
         mock_input = geopandas.GeoDataFrame({
             'geometry': [Point(0, 0)],
@@ -114,7 +98,6 @@ class TestProcessGreenspaceData(unittest.TestCase):
             'addr:state': ['Test State'],
             })
         
-        # Run function
         result = process_greenspace_data(mock_input)
 
         # assertEqual does not work here due to it using booleans

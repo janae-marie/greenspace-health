@@ -2,7 +2,6 @@ import osmnx
 import geopandas
 import pandas
 
-# Define variables
 place_name = 'St. Louis, Missouri'
 
 greenspace_tags = {
@@ -24,12 +23,11 @@ def check_boundary(place_name):
     
     """
     try:
-        # Attepmt finding geocode for the requested place
+        # Attempt to get GeoDataFrame with geometry column (as a polygon)
         area = osmnx.geocoder.geocode_to_gdf(place_name)
         print(f"Found boundary of type: {type(area.geometry.iloc[0])}")
         return True
     except Exception as boundary_error:
-        # If error, suggest a known place with valid boundary
         print(f"Boundary error: {str(boundary_error)}")
         print("Suggestion: Try a different place name like: 'St. Louis, Missouri'")
         return False
@@ -85,7 +83,7 @@ def process_greenspace_data(greenspace):
     try:
         desired_columns = ['leisure', 'name', 'addr:city', 'addr:county', 'addr:state']
         
-        # Ensure data is always uniform by adding NA if no data is returned for a column. 
+        # Ensure data is always uniform by adding pandas.NA if no data is returned for a column. 
         # This is common for places with little data.
         for col in desired_columns:
             if col not in greenspace.columns:
@@ -124,8 +122,6 @@ def main_load_greenspace(place_name, tags):
     """
     # Step 1: Check boundary
     print(f"Step 1: Checking boundary for {place_name}...")
-
-    # To Do: break this down a bit more
     if not check_boundary(place_name):
         return None
 
