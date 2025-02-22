@@ -72,7 +72,7 @@ def process_greenspace_data(greenspace):
     
     Returns:
         pandas.DataFrame : Cleaned DataFrame with desired columns of 
-            'leisure', 'name', 'addr:city', 'addr:county', 'addr:state', 'type'
+            'leisure', 'name', 'addr:city', 'addr:county', 'addr:state',
             All columns will exist with pandas.NA for missing values
         None if input is empty or if error occurs during processing
 
@@ -83,7 +83,7 @@ def process_greenspace_data(greenspace):
         return None
         
     try:
-        desired_columns = ['leisure', 'name', 'addr:city', 'addr:county', 'addr:state', 'type']
+        desired_columns = ['leisure', 'name', 'addr:city', 'addr:county', 'addr:state']
         
         # Ensure data is always uniform by adding NA if no data is returned for a column. 
         # This is common for places with little data.
