@@ -61,6 +61,41 @@ class TestLoadOsmGreenspace(unittest.TestCase):
             # Ensure return is None if any other error happens
             self.assertIsNone(result)
 
+class TestProcessGreenspaceData(unittest.TestCase):
+    def test_process_greenspace_data_normal(self):
+        """ 
+        Test processing with extra columns as input.
+        Expected input (directly from load query) will have several extra columns before being processed. 
+        """
+
+        # Create input (all desired columns)
+        mock_input = geopandas.GeoDataFrame({
+            'geometry': [Point(0, 0)],
+            'leisure': ['park'],
+            'name': ['Test Park'],
+            'addr:city': ['Test City'],
+            'addr:county': ['Test County'],
+            'addr:state': ['Test State'],
+            'extra': ['Test extra column']
+            })
+        
+        # Create expected output
+        mock_output = pandas.DataFrame({
+            'leisure': ['park'],
+            'name': ['Test Park'],
+            'addr:city': ['Test City'],
+            'addr:county': ['Test County'],
+            'addr:state': ['Test State'],
+            })
+        
+        # Run function
+        result = process_greenspace_data(mock_input)
+
+        # assertEqual does not work here due to it using booleans
+        # Using dataframe "equals" method instead
+        self.assertTrue(mock_output.equals(result))
+        
+
 # Run the unittests when this file is run directly
 if __name__ == '__main__':
     print("Test script is running")  

@@ -39,4 +39,4 @@ PLACES data is public domain data. See: https://data.cdc.gov/500-Cities-Places/P
   - conda activate greenspace_env
 
   ## Dependencies
-  - osmnx--2.0.1 Note that osmnx, geopandas, and matplotlib do not have versions specified. 
+  - osmnx--2.0.1; geonamescache--2.2.0 Note that osmnx, geopandas, and matplotlib do not have versions specified. 
