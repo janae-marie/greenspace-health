@@ -4,6 +4,7 @@ import osmnx
 import geopandas
 import pandas
 from shapely.geometry import Point
+from shapely.geometry import Polygon
 import sys
 import os
 
@@ -14,6 +15,31 @@ from osm_loader import check_boundary
 from osm_loader import load_greenspace_data
 from osm_loader import process_greenspace_data
 from osm_loader import main_load_greenspace
+
+
+class TestCheckBoundary(unittest.TestCase):
+    def test_check_boundary_fail(self):
+        """Test invalid OSM boundary return"""
+        with patch('osmnx.geocoder.geocode_to_gdf') as mock_geocode:
+            mock_geocode.side_effect = "Any error, probably geocode"
+
+            result = check_boundary('Fake Place')
+
+            self.assertFalse(result)
+
+    def test_check_boundary_valid(self):
+        with patch('osmnx.geocoder.geocode_to_gdf') as mock_geocode:
+
+            # geocode_to_gdf returns a GeoDataFrame (in a list) which always has a polygon as a 'geometry'
+            mock_gdf = geopandas.GeoDataFrame(
+                {'geometry': [Polygon([(0, 0), (0, 1), (1, 1), (1, 0)])]},
+            )
+
+            # Using known valid boundary
+            result = check_boundary('St. Louis, Missouri')
+
+            self.assertTrue(result)
+
 
 class TestLoadOsmGreenspace(unittest.TestCase):
     def test_load_greenspace_successful(self):
@@ -89,6 +115,36 @@ class TestProcessGreenspaceData(unittest.TestCase):
             })
         
         # Run function
+        result = process_greenspace_data(mock_input)
+
+        # assertEqual does not work here due to it using booleans
+        # Using dataframe "equals" method instead
+        self.assertTrue(mock_output.equals(result))
+
+    def test_process_greenspace_data_missing(self):
+        """ 
+        Test processing with too few columns as input.
+        This might happen when there are only a few results and they each are missing data.
+        """
+
+        # Create input (missing addr:state)
+        mock_input = geopandas.GeoDataFrame({
+            'geometry': [Point(0, 0)],
+            'leisure': ['park'],
+            'name': ['Test Park'],
+            'addr:city': ['Test City'],
+            'addr:county': ['Test County'],
+            })
+        
+        # Create expected output with pandas.NA as missing column
+        mock_output = pandas.DataFrame({
+            'leisure': ['park'],
+            'name': ['Test Park'],
+            'addr:city': ['Test City'],
+            'addr:county': ['Test County'],
+            'addr:state': [pandas.NA], 
+            })
+    
         result = process_greenspace_data(mock_input)
 
         # assertEqual does not work here due to it using booleans
