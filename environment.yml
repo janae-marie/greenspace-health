@@ -10,3 +10,5 @@ dependencies:
     - scipy.stats #potentially need this for additional correlation calculations
     - mock # To support unit tests using mock object library. 
     - geonamescache=2.2.0 #Geonames data for continents, cities and US states
+    - pandas
+    - numpy
