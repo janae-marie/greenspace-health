@@ -3,7 +3,7 @@
 
 Does greenspace access correlate with reported depression statistics across different counties or areas of a city?
 
-This is a simple project to gather data from [OpenStreetMap](https://www.openstreetmap.org/#map=5/38.01/-95.84) and [CDC PLACES](https://www.cdc.gov/places/index.html) to see if there is a basic correlation between greenspaces and clinical depression rates. We hope that it can be used for various places to analyze this relationship across the U.S. For now, it can handle analyzing one place at a time.
+This is a simple project to gather data from [OpenStreetMap](https://www.openstreetmap.org/#map=5/38.01/-95.84) and [CDC PLACES](https://www.cdc.gov/places/index.html)'s [2024 Local Data for Better Health](https://data.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-County-Data-20/swc5-untb/about_data) to see if there is a basic correlation between greenspaces and clinical depression rates. We hope that it can be used for various places to analyze this relationship across the U.S. For now, it can handle analyzing one place at a time.
 
 Janae Thomson and Heather Tottingham built this for a group project for Complex Adaptive Systems 502 offered through Arizona State University.
 
@@ -57,10 +57,10 @@ Boeing, G. (2024). Modeling and Analyzing Urban Networks and Amenities with OSMn
 OSMnx is open source and licensed under the MIT license. OpenStreetMap’s open data license: https://www.openstreetmap.org/copyright
 
 ## CDC PLACES
-To find the mental health statistics, we utilized the [CDC PLACES](https://www.cdc.gov/places/index.html) dataset. Specifically:
+To find the mental health statistics, we utilized the [CDC PLACES](https://www.cdc.gov/places/index.html)'s 2024 [Local Data for Better Health](https://data.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-County-Data-20/swc5-untb/about_data) dataset. Specifically:
 - YEAR
-- StateId
-- CountyName
+- StateAbbr
+- LocationName
 - Data_Value
 - Low_Confidence_Limit
 - High_Confidence_Limit
