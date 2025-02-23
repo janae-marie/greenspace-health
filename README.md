@@ -1,42 +1,80 @@
-This is the group project for CAS502, which includes Janae Thomson and Heather Tottingham. 
+# :construction: Greenspace accessibility & depression rates :construction:
+🏗️ _This project is still being built_
 
-# Greenspace accessibility & health
-## Project Overview
+Does greenspace access correlate with reported depression statistics across different counties or areas of a city?
 
-Does greenspace access correlate with reported depression statistics across different neighborhoods or areas of a city?
+This is a simple project to gather data from [OpenStreetMap](https://www.openstreetmap.org/#map=5/38.01/-95.84) and [CDC PLACES](https://www.cdc.gov/places/index.html) to see if there is a basic correlation between greenspaces and clinical depression rates. We hope that it can be used for various places to analyze this relationship across the U.S. For now, it can handle analyzing one place at a time.
 
-Utilizing open-source data sets, we aim to analyze what “access” to greenspace might mean for city residents, including distance, greenspace type, and public access designations. Then, we will utilize depression statistics to see if and how these correlate to access types. We hope to visualize these correlations.
+Janae Thomson and Heather Tottingham built this for a group project for Complex Adaptive Systems 502 offered through Arizona State University.
+
+> [!TIP]
+> Greenspaces are publically available nature spaces. For this project, we are defaulting the definition to OSM's `leisure` values of *park*, *nature reserve*, and *garden*. 
+
+## How to install the project
+1. Install the prerequisites
+  - Python 3.1
+  - Conda package manager
+  - Git
+2. Clone the repository using Git
+3. Set up the Conda environment*
+  - Using bash, create the environment: `conda env create -f environment.yml`
+  - Activate it: `conda activate greenspace_env`
+  - _Any other needed for heather's work?_
+
+*All prerequisites are outlined in the environment.yml file. This will be handled by the conda package manager! 
+
+## How to use the project-TBD
+
+### How do you define a "place"?-TBD
+
+Before you run the code, it's important to choose the place you want to analyze. CDC Data is at the County level, while OSM data uses geometry (via GeoDataFrames) to define places. We've defaulted this project to use the _enter place here_ place. It is managed in the _file name?)_ file. 
+
+> [!WARNING]
+> Places may not line up correctly due to this varying grain definition. We recommend reviewing both data sets before trying to run this code.
+> 
+> The OSM loader, when run, will tell you if the place you entered is a valid boundary or not.
+> 
+> The CDC loader, when run, will tell you _??_
+> 
+> **No code in this project will verify the places chosen are the same. This must be done manually before running this project.**
+
+
+## How to run tests-TBD
+
+## I want to contribute!-TBD
 
 ## Data Sources and Definitions
 ### OpenStreetMap
-- Utilizing osmnx package to load greenspace, defaulted to "park", "nature reserve", and "garden" designations
-#### Citation
+This project utilizes the [osmnx package](https://osmnx.readthedocs.io/en/stable/) to load greenspace, defaulted to "park", "nature reserve", and "garden" designations.
+
+**Citation**
+
 Boeing, G. (2024). Modeling and Analyzing Urban Networks and Amenities with OSMnx. Working paper. https://geoffboeing.com/publications/osmnx-paper/
-#### License
-OSMnx is open source and licensed under the MIT license. OpenStreetMap’s open data license: https://www.openstreetmap.org/copyright 
+
+**License**
+
+OSMnx is open source and licensed under the MIT license. OpenStreetMap’s open data license: https://www.openstreetmap.org/copyright
+
 ### CDC PLACES
-- Extract the following from the CDC PLACES dataset: YEAR, StateId, CountyName, Data_Value, Low_Confidence_Limit, High_Confidence_Limit, TotalPop18plus, and MeasureId = DEPRESSION. This will give us a subset of the data with the prevalence value of depression among adults by year, state, and county, with the lower and upper confidence interval values.
-#### Citation
+To find the mental health statistics, we utilized the [CDC PLACES](https://www.cdc.gov/places/index.html) dataset. Specifically:
+- YEAR
+- StateId
+- CountyName
+- Data_Value
+- Low_Confidence_Limit
+- High_Confidence_Limit
+- TotalPop18plus
+- MeasureId = DEPRESSION
+
+This gives us a subset of the data with the prevalence value of depression among adults by year, state, and county, with the lower and upper confidence interval values.
+
+**Citation**
+
 Centers for Disease Control and Prevention. PLACES: Local Data for Better Health. https://www.cdc.gov/places
-#### License
-PLACES data is public domain data. See: https://data.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-County-Data-20/swc5-untb/about_data 
 
-## Project Plan
-### Challenges
-- Heather is new to GitHub, version control systems, and writing code in collaboration with others.
-- Janae is more novice at data analysis and quality control over the analysis.
+**License**
 
-### Collaboration: 
-- Direct messages via Slack as primary interaction.
-- GitHub feature branching
-  + Utilize feature branching where each person will work on certain functionality within a branch. We may collaborate on the same branch for the same functionality (i.e. an issue at a time).
-  + familiarize with workflow
-  + review each other's code via pull requests to better collaborate and create a cohesive product
+PLACES data is public domain data. See: https://data.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-County-Data-20/swc5-untb/about_data
 
-  # Environment set-up
-  To recreate the environment, ensure Conda is installed on your computer, and run
-  - conda env create -f environment.yml
-  - conda activate greenspace_env
+## License-TBD
 
-  ## Dependencies
-  - osmnx--2.0.1; geonamescache--2.2.0 Note that osmnx, geopandas, and matplotlib do not have versions specified. 
