@@ -77,5 +77,5 @@ Centers for Disease Control and Prevention. PLACES: Local Data for Better Health
 
 PLACES data is public domain data. See: https://data.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-County-Data-20/swc5-untb/about_data
 
-# License-TBD
+# License - MIT (see license.txt)
 
