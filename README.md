@@ -10,7 +10,8 @@ Janae Thomson and Heather Tottingham built this for a group project for Complex 
 > [!TIP]
 > Greenspaces are publically available nature spaces. For this project, we are defaulting the definition to OSM's `leisure` values of *park*, *nature reserve*, and *garden*. 
 
-## How to install the project
+# How to use the project
+## Install
 1. Install the prerequisites
   - Python 3.1
   - Conda package manager
@@ -23,7 +24,7 @@ Janae Thomson and Heather Tottingham built this for a group project for Complex 
 
 *All prerequisites are outlined in the environment.yml file. This will be handled by the conda package manager! 
 
-## How to use the project-TBD
+## Run the code-TBD
 
 ### How do you define a "place"?-TBD
 
@@ -39,12 +40,12 @@ Before you run the code, it's important to choose the place you want to analyze.
 > **No code in this project will verify the places chosen are the same. This must be done manually before running this project.**
 
 
-## How to run tests-TBD
+## Running tests
 
 ## I want to contribute!-TBD
 
-## Data Sources and Definitions
-### OpenStreetMap
+# Data Sources and Definitions
+## OpenStreetMap
 This project utilizes the [osmnx package](https://osmnx.readthedocs.io/en/stable/) to load greenspace, defaulted to "park", "nature reserve", and "garden" designations.
 
 **Citation**
@@ -55,7 +56,7 @@ Boeing, G. (2024). Modeling and Analyzing Urban Networks and Amenities with OSMn
 
 OSMnx is open source and licensed under the MIT license. OpenStreetMap’s open data license: https://www.openstreetmap.org/copyright
 
-### CDC PLACES
+## CDC PLACES
 To find the mental health statistics, we utilized the [CDC PLACES](https://www.cdc.gov/places/index.html) dataset. Specifically:
 - YEAR
 - StateId
@@ -76,5 +77,5 @@ Centers for Disease Control and Prevention. PLACES: Local Data for Better Health
 
 PLACES data is public domain data. See: https://data.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-County-Data-20/swc5-untb/about_data
 
-## License-TBD
+# License-TBD
 
