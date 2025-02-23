@@ -14,6 +14,8 @@ print(cdc_data_for_analysis)
 osm_data_for_analysis = main_load_greenspace(place_name, greenspace_tags)
 print(osm_data_for_analysis)
 
+# Need to convert greenspace data to a score to correlate with CDC Depression score
+
 # Correlation Analysis
 x = numpy.array([1, 2, 3, 4, 5])
 y = numpy.array([2, 4, 5, 4, 5])
