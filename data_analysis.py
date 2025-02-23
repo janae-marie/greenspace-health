@@ -1,24 +1,18 @@
 # Import required modules
 import csv
+import numpy
 from cdc_loader import load_cdc_places
-from osm_loader import load_greenspace_data
-import json
-import geonamescache
+from osm_loader import main_load_greenspace
 
-place_name = 'Maricopa County, Arizona'
-greenspace_tags = {'leisure': ['park', 'nature_reserve']}
-greenspace_data = load_osm_greenspace(place_name, greenspace_tags)
+place_name = 'St. Louis County, Missouri'
+greenspace_tags = {'leisure': ['park', 'nature_reserve', 'garden']}
+greenspace_data = main_load_greenspace(place_name, greenspace_tags)
 
-county_name = str.split(place_name)[0] # should be first word in place_name
-# Two-letter state abbreviations: https://www.faa.gov/air_traffic/publications/atpubs/cnt_html/appendix_a.html
-state_abbr = 'AZ' # Use website above to assign state_abbr from state name
-cdc_data = load_cdc_places(county_name, state_abbr)
-
-# Data for CSV File
-# Need to combine CDC Data and Greenspace Data into one
-data = cdc_data
-# File path for the CSV file
-csv_file_path = 'data.csv'
+state_abbr = 'MO'
+cdc_data_for_analysis = load_cdc_places(county_name, state_abbr)
+print(cdc_data_for_analysis)
+osm_data_for_analysis = main_load_greenspace(place_name, greenspace_tags)
+print(osm_data_for_analysis)
 
 # Correlation Analysis
 x = numpy.array([1, 2, 3, 4, 5])
@@ -30,4 +24,5 @@ print(correlation_coefficient)
 # So, for our correlation analysis, we need arrays of equal size
 # Data Matrix: County, State, Depression_Value, Greenspace_Value
 # Calculate numpy.corrcoef(Depression_Value, Greenspace_Value)[0, 1]
-
+correlation_coefficient = numpy.corrcoef(Data_Value, leisure_counts)
+print(correlation_coefficient)
