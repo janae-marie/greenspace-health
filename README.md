@@ -20,7 +20,6 @@ Janae Thomson and Heather Tottingham built this for a group project for Complex 
 3. Set up the Conda environment*
   - Using bash, create the environment: `conda env create -f environment.yml`
   - Activate it: `conda activate greenspace_env`
-  - _Any other needed for heather's work?_
 
 *All prerequisites are outlined in the environment.yml file. This will be handled by the conda package manager! 
 
@@ -35,7 +34,7 @@ Before you run the code, it's important to choose the place you want to analyze.
 > 
 > The OSM loader, when run, will tell you if the place you entered is a valid boundary or not.
 > 
-> The CDC loader, when run, will tell you _??_
+> The CDC loader, when run, will tell you self-reported depression levels among adults over age 18 by the place you entered.
 > 
 > **No code in this project will verify the places chosen are the same. This must be done manually before running this project.**
 
