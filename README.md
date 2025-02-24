@@ -98,6 +98,8 @@ Several features of this project were not able to be a part of the first version
 
 As you can see, this project is a work in progress. If you'd like to contribute, please fork the repository, add a feature branch, commit, and open a pull request.
 
+If you find a bug or would like to suggest a feature update, please utilize this repository's Issues by adding an Issue with enough description.
+
 Please ensure your contributions meet the existing style, include unit test coverage, and are documented properly.
 
 # License - MIT (see license.txt)
