@@ -1,18 +1,21 @@
 # Import required modules
 import csv
 import numpy
-from cdc_loader import load_cdc_places
+from cdc_loader import load_cdc_data
 from osm_loader import main_load_greenspace
 
+# Load greenspace
 place_name = 'St. Louis County, Missouri'
 greenspace_tags = {'leisure': ['park', 'nature_reserve', 'garden']}
-greenspace_data = main_load_greenspace(place_name, greenspace_tags)
-
-state_abbr = 'MO'
-cdc_data_for_analysis = load_cdc_places(county_name, state_abbr)
-print(cdc_data_for_analysis)
 osm_data_for_analysis = main_load_greenspace(place_name, greenspace_tags)
 print(osm_data_for_analysis)
+
+# Load CDC data
+state_abbr = 'MO'
+county_name = 'St. Louis'
+cdc_data_for_analysis = load_cdc_data(county_name, state_abbr)
+print(cdc_data_for_analysis)
+
 
 # Need to convert greenspace data to a score to correlate with CDC Depression score
 
