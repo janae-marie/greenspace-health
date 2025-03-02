@@ -1,5 +1,5 @@
 # :construction: Greenspace accessibility & depression rates :construction:
-🏗️ _This project is still being built_
+🏗️ _This project has partial functionality and will not be maintained by its creators._
 
 Does greenspace access correlate with reported depression statistics across different counties or areas of a city?
 
@@ -27,7 +27,11 @@ Janae Thomson and Heather Tottingham built this for a group project for Complex 
 
 ### How do you define a "place"?
 
-Before you run the code, it's important to choose the place you want to analyze. CDC Data is at the County level, while OSM data uses geometry (via GeoDataFrames) to define places. We've defaulted this project to use the St. Louis county, MO place. It is managed in the data_analysis.py file. We also use this default place in each of the loader files.
+Before you run the code, it's important to choose the place you want to analyze. CDC Data is at the County level, while OSM data uses geometry (via GeoDataFrames) to define places. 
+
+We've defaulted this project to use the St. Louis county, MO place within the data loader functions. 
+
+OSM data allows a reader-friendly format to query, such as "St. Louis County, Missouri" and CDC data requires a 2-letter state abbreviation and separate county name, e.g. `state_abbr = 'MO' county_name = 'St. Louis'`.  This is defined in the `data_analysis.py` file and can be altered at the top of the file to try different places. If it is not altered here, the functions will default to St. Louis County.
 
 > [!WARNING]
 > Places may not line up correctly due to this varying grain definition. We recommend reviewing both data sets before trying to run these scripts.
