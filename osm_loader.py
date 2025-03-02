@@ -2,8 +2,6 @@ import osmnx
 import geopandas
 import pandas
 
-place_name = 'St. Louis, Missouri'
-
 greenspace_tags = {
     'leisure': ['park', 'nature_reserve', 'garden']
 }
@@ -105,7 +103,7 @@ def process_greenspace_data(greenspace):
         return None
         
 
-def main_load_greenspace(place_name, tags):
+def main_load_greenspace(place_name='St. Louis County, Missouri', tags=greenspace_tags):
     """
     Main function to load, process, and analyze greenspace data.
     
@@ -150,4 +148,4 @@ def main_load_greenspace(place_name, tags):
 
 # Runs only when executed directly, not when referenced in other scripts
 if __name__ == "__main__":
-    main_load_greenspace(place_name, greenspace_tags)
+    main_load_greenspace()

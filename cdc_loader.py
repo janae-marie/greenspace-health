@@ -2,13 +2,10 @@
 import requests
 import pandas
 
-county_name = 'St. Louis'
-state_abbr = 'MO'
-
 # To do: Add location verification function
 
 # Load PLACES data using county/state definition & Measure ID (default: depression)
-def load_cdc_data(county_name, state_abbr, measure_id='DEPRESSION', limit=5000):
+def load_cdc_data(county_name='St. Louis', state_abbr='MO', measure_id='DEPRESSION', limit=5000):
     """
     Load CDC PLACES data for a specific county (locationname) and 2-letter state abbeviation.
     
@@ -66,4 +63,4 @@ def load_cdc_data(county_name, state_abbr, measure_id='DEPRESSION', limit=5000):
 
 # Runs only when executed directly, not when referenced in other scripts
 if __name__ == "__main__":
-    load_cdc_data(state_abbr, county_name)
+    load_cdc_data()
