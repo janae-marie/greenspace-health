@@ -5,15 +5,15 @@ import pandas
 # To do: Add location verification function
 
 # Load PLACES data using county/state definition & Measure ID (default: depression)
-def load_cdc_data(county_name='St. Louis', state_abbr='MO', measure_id='DEPRESSION', limit=5000):
+def load_cdc_data(county_name='St. Louis', state_abbr='MO', measure_id='DEPRESSION', limit=1):
     """
-    Load CDC PLACES data for a specific county (locationname) and 2-letter state abbeviation.
+    Load CDC PLACES data for a specific county (locationname), 2-letter state abbeviation, and measure ID of depression.
     
     Args:
         county_name (str): Name of county being retrieved
         state_abbr (str): 2-letter state abbreviation
         measure_id (str): CDC measure ID (default: DEPRESSION)
-        limit (int): Maximum number of records to return (default: 5000)
+        limit (int): Maximum number of records to return (default: 1)
 
     Returns:
         pandas.DataFrame: CDC PLACES data with columns:
