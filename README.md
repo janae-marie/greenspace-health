@@ -91,6 +91,7 @@ PLACES data is public domain data. See: https://data.cdc.gov/500-Cities-Places/P
 # Out of scope for now
 
 Several features of this project were not able to be a part of the first version due to time and ability. These include:
+- Correlation coefficient analysis using multiple places
 - Location verification and further modularization of the cdc_loader.py file
 - Location management (handling the inherently mismatched grain sizes of the data sources)
 - Location as user input handling
