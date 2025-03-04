@@ -8,15 +8,14 @@ from osm_loader import main_load_greenspace
 place_name = 'St. Louis County, Missouri'
 greenspace_tags = {'leisure': ['park', 'nature_reserve', 'garden']}
 osm_data_for_analysis = main_load_greenspace(place_name, greenspace_tags)
-print(osm_data_for_analysis)
+print(f"OSM data for analysis for {place_name}: {osm_data_for_analysis}")
 # Run again for 'Laramie County, Wyoming'
 
 # Load CDC data
 state_abbr = 'MO'
 county_name = 'St. Louis'
-cdc_data_for_analysis = load_cdc_data(county_name, state_abbr, measure_id)
-print(cdc_data_for_analysis)
-# Run again for 'Laramie, WY'
+cdc_data_for_analysis = load_cdc_data(county_name, state_abbr)
+print(f"CDC data for analysis for {county_name}, {state_abbr}: {cdc_data_for_analysis}")
 
 
 # Need to convert greenspace data to a score to correlate with CDC Depression score
@@ -28,6 +27,6 @@ greenspace_values = numpy.array([652, 127, 4288])
 # Greenspace counts for St. Louis County MO, Laramie County WY, and Polk County IA
 
 correlation_coefficient = numpy.corrcoef(depression_values, greenspace_values)[0, 1]
-print(correlation_coefficient)
+print(f" The correlation coefficient is: {correlation_coefficient}")
 # -0.7624134017970408
 
