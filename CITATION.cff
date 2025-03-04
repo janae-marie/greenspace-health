@@ -1,0 +1,12 @@
+cff-version: 1.0.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Thomson"
+  given-names: "Janae"
+- family-names: "Tottingham"
+  given-names: "Heather"
+title: "Greenspace Accessibility and Health"
+version: 0.1
+doi: 
+date-released: 2025-03-03
+url: "https://github.com/janae-marie/greenspace-health"
